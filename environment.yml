@@ -6,6 +6,7 @@ dependencies:
   - cpuonly=2.0=0
   - numpy=1.21.5=py37h7a0a035_3
   - numpy-base=1.21.5=py37hca35cd5_3
+  - pip=22.1.2=py37haa95532_0
   - python=3.7.13=h6244533_0
   - pytorch=1.11.0=py3.7_cpu_0
   - pytorch-mutex=1.0=cpu
