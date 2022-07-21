@@ -1,20 +1,14 @@
 name: ArgumentEffectiveness
 channels:
-  - pytorch
   - defaults
 dependencies:
-  - cpuonly=2.0=0
-  - numpy=1.21.5=py37h7a0a035_3
-  - numpy-base=1.21.5=py37hca35cd5_3
-  - pip=22.1.2=py37haa95532_0
-  - python=3.7.13=h6244533_0
-  - pytorch=1.11.0=py3.7_cpu_0
-  - pytorch-mutex=1.0=cpu
-  - torchaudio=0.11.0=py37_cpu
-  - torchvision=0.12.0=py37_cpu
+  - python=3.7
+  - pytorch==1.11.0
+  - torchvision==0.12.0
+  - torchaudio==0.11.0
+  - cpuonly
+  - pip
   - pip:
-    - huggingface-hub==0.8.1
-    - sentencepiece==0.1.96
-    - streamlit==1.11.0
-    - transformers==4.18.0
+      streamlit==1.11.0
+      transformers==4.18.0
 prefix: D:\Downloads\anaconda3\envs\ArgumentEffectiveness
