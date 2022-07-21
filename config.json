@@ -1,0 +1,5 @@
+{
+  "pretrained_model": "microsoft/deberta-v3-base",
+  "saved_model_checkpoint": "saved_model_state_deberta_essay-text.pt"
+
+}
