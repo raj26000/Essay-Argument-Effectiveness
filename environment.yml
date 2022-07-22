@@ -10,6 +10,7 @@ dependencies:
   - cpuonly
   - pip
   - pip:
+      sentencepiece==0.1.96
       streamlit==1.11.0
       transformers==4.18.0
 prefix: D:\Downloads\anaconda3\envs\ArgumentEffectiveness
