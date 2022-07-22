@@ -1,5 +1,5 @@
 # Classifying Effectiveness of Argumentative elements in Student essays.
-A **Streamlit**-based Web App for evaluating effectiveness of seven distinct argument types in student essays. Continue reading to understand more about the problem, dive deep into the training process (notebook linked) and reproduce the web app locally for inference.
+A **Streamlit**-based Web App for evaluating effectiveness of seven distinct argument types in student essays. Continue reading to understand more about the problem, dive deep into the training process (notebook linked) and reproduce the web app locally for inference. Here is the link to the actual [deployed app](https://raj26000-essay-argument-effectiveness-predict-deploy-0x7ym7.streamlitapp.com/).
 
 ## Describing the Problem
 Given an essay text file along with the type of argumentative element to classify and its corresponding text, predict if the argument was **Effective**, **Adequate** or **Ineffective** -- in order of decreasing quality. The following argumentative discourse elements are supported for classification:
@@ -14,7 +14,7 @@ Given an essay text file along with the type of argumentative element to classif
 Hence, we are effectively solving a multiclass classification problem with three targets. The dataset for the same can be accessed from [**Kaggle**](https://www.kaggle.com/competitions/feedback-prize-effectiveness). 
 
 ## Training the Model
-Model training was performed using RoBERTa-base and DeBERTa-v3-base models in PyTorch. The latter eventually gave better results on the validation set and on the final public test set on Kaggle. The final model used was trained over **7 epochs** with an Early Stopping at **Patience 3**, to account for overfitting (The training did indeed aobrt at 6 epochs!). The approach used to model the text data is as follows: 
+Model training was performed using RoBERTa-base and DeBERTa-v3-base models in PyTorch. The latter eventually gave better results on the validation set and on the final public test set on Kaggle. The final model used was trained over **7 epochs** with an Early Stopping at **Patience 3**, to account for overfitting (The training did indeed abort at 6 epochs!). The approach used to model the text data is as follows: 
 ```
 input_text = discourse_type [SEP] discourse_text [SEP] essay_text 
 ```
@@ -31,7 +31,7 @@ This will install all the required dependencies for running the app locally.
 And then activate it with `conda activate env_name`. Remember, the first line of the yml file has the name of the environment that will be created. Feel free to change.
 - The [`config.json`](config.json) file contains 2 parameters:
 	1. `pretrained_model`: The model architecture that was finetuned. I've used **DeBERTa**, you may run the training with one of your choice and replace here accordingly. Ex: 	`bert-base-uncased`, `roberta-base`.
-	2. `saved_model_checkpoint`: Path of the .pt file containing the best model's weights. Again provided by default, you may train one of your own and replace. 
+	2. `saved_model_checkpoint`: Path of the .pt file containing the best model's weights. Again provided by [default](saved_model_state_deberta_essay-text.pt), you may train one of your own and replace. 
 - The file [`predict_deploy.py`](predict_deploy.py) contains the Streamlit app to be run. Just type the following command in the env activated terminal to get it up and running :rocket:
 ```
 python -m streamlit run predict_deploy.py
