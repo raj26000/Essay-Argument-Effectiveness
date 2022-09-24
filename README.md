@@ -1,5 +1,5 @@
 # Classifying Effectiveness of Argumentative elements in Student essays.
-A **Streamlit**-based Web App for evaluating effectiveness of seven distinct argument types in student essays. Continue reading to understand more about the problem, dive deep into the training process (notebook linked) and reproduce the web app locally for inference. Here is the link to the actual [deployed app](https://raj26000-essay-argument-effectiveness-predict-deploy-0x7ym7.streamlitapp.com/).
+A **Streamlit**-based Web App for evaluating effectiveness of seven distinct argument types in student essays. Continue reading to understand more about the problem, dive deep into the training process (notebook linked) and reproduce the web app locally for inference.
 
 ## Describing the Problem
 Given an essay text file along with the type of argumentative element to classify and its corresponding text, predict if the argument was **Effective**, **Adequate** or **Ineffective** -- in order of decreasing quality. The following argumentative discourse elements are supported for classification:
