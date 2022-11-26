@@ -1,4 +1,5 @@
-from models import DiscourseEffectivenessModel, inference
+from models import DiscourseEffectivenessModel
+from infer import inference
 import streamlit as st
 from transformers import AutoTokenizer
 import json
