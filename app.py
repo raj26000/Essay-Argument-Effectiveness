@@ -12,7 +12,6 @@ with open('config.json', 'r') as f:
 
 config['device'] = torch.device('cpu')
 tokenizer = AutoTokenizer.from_pretrained(config['pretrained_model'])
-# model = AutoModel.from_pretrained(config['saved_model_checkpoint']).to(config['device'])
 
 model = DiscourseEffectivenessModel().to(config['device'])
 model.load_state_dict(torch.load(config['saved_model_checkpoint'], map_location=config['device']))
