@@ -1,4 +1,6 @@
 {
   "pretrained_model": "microsoft/deberta-v3-base",
-  "saved_model_checkpoint": "saved_model_state_deberta_siamese_3-stack.pt"
+  "saved_model_checkpoint": "saved_model_state_deberta_siamese_3-stack.pt",
+  "app_host": "localhost",
+  "app_port": 8008
 }
