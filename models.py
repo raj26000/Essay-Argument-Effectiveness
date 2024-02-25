@@ -6,7 +6,8 @@ import json
 with open('config.json', 'rb') as f:
     CONFIG = json.loads(f.read())
 
-CONFIG['device'] = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+CONFIG['device'] = torch.device('cpu')
+
 
 class MeanPoolingLayer(nn.Module):
     """
@@ -14,6 +15,7 @@ class MeanPoolingLayer(nn.Module):
     Reduces the last_hidden_state model output from (batch_size, sequence_length, hidden_state_dim) to (batch_size, hidden_state_dim) by doing so.
     To avoid averaging vectors of special tokens, dot product is performed with attention mask by expanding it from 0/1 to a vector of zeros or ones for each token in each sequence.
     """
+
     def __init__(self):
         super(MeanPoolingLayer, self).__init__()
 
@@ -32,6 +34,7 @@ class DiscourseEffectivenessModel(nn.Module):
     The pooled outputs from both heads and their difference is concatenated before passing to dense layer.
     This is a better alternative to concatenating all texts into a single sentence and passing to a single BERT head.
     """
+
     def __init__(self, num_classes=3):
         super(DiscourseEffectivenessModel, self).__init__()
         self.num_classes = num_classes

@@ -5,7 +5,7 @@ import json
 with open('config.json', 'rb') as f:
     CONFIG = json.loads(f.read())
 
-CONFIG['device'] = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+CONFIG['device'] = torch.device('cpu')
 
 @torch.no_grad()
 def inference(tokenizer, discourse_type, discourse_text, essay_text, model):
