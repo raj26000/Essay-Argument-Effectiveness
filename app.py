@@ -1,4 +1,4 @@
-from fastapi import FastAPI, status, UploadFile
+from fastapi import FastAPI, status, UploadFile, Form, File
 import uvicorn
 import json
 import torch
@@ -18,7 +18,14 @@ model.load_state_dict(torch.load(config['saved_model_checkpoint'], map_location=
 
 
 @app.post('/evaluateDiscourse', status_code=status.HTTP_200_OK)
-def predict_discourse_effectiveness(essay_file: UploadFile, discourse_type: str, discourse_text: str):
+def predict_discourse_effectiveness(essay_file: UploadFile = File(...), discourse_type: str = Form(...), discourse_text: str = Form(...):
+    """
+    Sample postman cURL: 
+    curl --location 'http://localhost:8008/evaluateDiscourse' \
+    --form 'essay_file=@"/C:/Users/rajdeep.agrawal/Documents/D72CB1C11673.txt"' \
+    --form 'discourse_type="Claim"' \
+    --form 'discourse_text="Seeking others opinion can be very helpful and beneficial."'
+    """
     essay_text = essay_file.file.read()
     probs = inference(tokenizer, discourse_type, discourse_text, str(essay_text), model)
     print(probs)
