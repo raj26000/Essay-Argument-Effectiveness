@@ -26,7 +26,21 @@ difference is what is eventually concatenated (not the original sentences!).
 [**notebook**](https://www.kaggle.com/code/raj26000/pytorch-feedback-deberta-base-training). The best model is automatically saved during the course of training and the .pt checkpoint file can be downloaded for inference. Place the downloaded file in the project directory and update its path in the config appropriately. 
 Alternately, you may choose to use my trained model checkpoint, which can be downloaded from [**here**](https://huggingface.co/raj26000/deberta-base-siamese-feedback-arguments/blob/main/saved_model_state_deberta_siamese_3-stack.pt).
 
-## Setup for reproducing Inference
+## Inference Using Docker Image for Project
+- Access and pull the docker image with `docker pull rajdeep26000/essay-arg-eff:0.0.1`
+- The image exposes port 8008 from the container you create, bind the port to a desired number on your local while creating and running the container:
+  `docker run -d --name <CONTAINER_NAME> -p <LOCAL_PORT>:8008 rajdeep26000/essay-arg-eff:0.0.1`
+- Now use the following cURL to access the app via Postman:
+  	- Upload the essay file as a `.txt`.
+	- Choose the type of discourse element to evaluate (from the seven above)
+	- Enter the text of the discourse or argument, which is essentially part of the above essay.
+  `curl --location 'http://localhost:8008/evaluateDiscourse' \
+    --form 'essay_file=@"/C:/Users/rajdeep.agrawal/Documents/D72CB1C11673.txt"' \
+    --form 'discourse_type="Claim"' \
+    --form 'discourse_text="Seeking others opinion can be very helpful and beneficial."'
+  `
+
+## Setup for reproducing Inference Locally
 - Clone the repo using `git clone https://github.com/raj26000/Essay-Argument-Effectiveness.git`
 - Using the [`environment.yml`](environment.yml) file, create the conda environment as follows:
 ```
@@ -37,15 +51,5 @@ And then activate it with `conda activate env_name`. Remember, the first line of
 - The [`config.json`](config.json) file contains 2 parameters:
 	1. `pretrained_model`: The model architecture that was finetuned. I've used **DeBERTa**, you may run the training with one of your choice and replace here accordingly. Ex: 	`bert-base-uncased`, `roberta-base`.
 	2. `saved_model_checkpoint`: Local path of the .pt file containing the best model's weights, obtained from the training notebook or downloaded from the [**link**](https://huggingface.co/raj26000/deberta-base-siamese-feedback-arguments/blob/main/saved_model_state_deberta_siamese_3-stack.pt) above.
-- The file [`predict_deploy.py`](predict_deploy.py) contains the Streamlit app to be run. Just type the following command in the env activated terminal to get it up and running :rocket:
-```
-python -m streamlit run predict_deploy.py
-```
-
-## Using the App
-Once the app is up, its time to test out some samples for inference. 
-- Upload the essay file as a `.txt`.
-- Choose the type of discourse element to evaluate (from the seven above)
-- Enter the text of the discourse or argument, which is essentially part of the above essay.
-- Click **Evaluate** and wait for a few seconds to get the probabilities of each output class. 
+- Run the FastAPI app with `python app.py` and access the endpoint as described above.
 
